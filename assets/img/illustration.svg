@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 460" fill="none">
+  <defs>
+    <linearGradient id="g-floor" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#1E3A8A" stop-opacity=".9"/>
+      <stop offset="1" stop-color="#0B1F4D" stop-opacity=".2"/>
+    </linearGradient>
+    <linearGradient id="g-screen" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F8FAFC"/>
+      <stop offset="1" stop-color="#CBD5E1"/>
+    </linearGradient>
+    <linearGradient id="g-metal" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#E2E8F0"/>
+      <stop offset="1" stop-color="#94A3B8"/>
+    </linearGradient>
+    <linearGradient id="g-pin" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#60A5FA"/>
+      <stop offset="1" stop-color="#1D4ED8"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+  </defs>
+
+  <!-- Platform -->
+  <path d="M30 330 210 230 400 330 220 440z" fill="url(#g-floor)"/>
+  <path d="M30 330 220 440v10L30 340z" fill="#0B1F4D" opacity=".6"/>
+  <path d="M220 440 400 330v10L220 450z" fill="#0A1A3F" opacity=".7"/>
+
+  <!-- Dashed connectors -->
+  <path d="M130 150 C150 200 190 210 210 240" stroke="#60A5FA" stroke-width="1.5" stroke-dasharray="4 5" opacity=".6"/>
+  <path d="M300 110 C300 170 260 200 240 235" stroke="#60A5FA" stroke-width="1.5" stroke-dasharray="4 5" opacity=".6"/>
+
+  <!-- QR card 1 (back, top center) -->
+  <g transform="translate(150 30) skewY(8)">
+    <rect width="74" height="90" rx="10" fill="#3B5BA9" opacity=".7"/>
+    <rect x="6" y="6" width="62" height="78" rx="7" fill="#fff"/>
+    <g fill="#0F172A">
+      <rect x="14" y="16" width="16" height="16"/><rect x="44" y="16" width="16" height="16"/><rect x="14" y="56" width="16" height="16"/>
+      <rect x="34" y="38" width="6" height="6"/><rect x="42" y="44" width="6" height="6"/><rect x="50" y="56" width="10" height="6"/><rect x="36" y="62" width="6" height="10"/>
+    </g>
+    <g fill="#fff"><rect x="18" y="20" width="8" height="8"/><rect x="48" y="20" width="8" height="8"/><rect x="18" y="60" width="8" height="8"/></g>
+  </g>
+
+  <!-- QR card 2 (left) -->
+  <g transform="translate(55 105) skewY(-8)">
+    <rect width="74" height="90" rx="10" fill="#3B5BA9" opacity=".7"/>
+    <rect x="6" y="6" width="62" height="78" rx="7" fill="#fff"/>
+    <g fill="#0F172A">
+      <rect x="14" y="16" width="16" height="16"/><rect x="44" y="16" width="16" height="16"/><rect x="14" y="56" width="16" height="16"/>
+      <rect x="36" y="40" width="6" height="6"/><rect x="44" y="50" width="12" height="6"/><rect x="38" y="62" width="6" height="10"/>
+    </g>
+    <g fill="#fff"><rect x="18" y="20" width="8" height="8"/><rect x="48" y="20" width="8" height="8"/><rect x="18" y="60" width="8" height="8"/></g>
+    <circle cx="37" cy="45" r="7" fill="#2563EB"/>
+  </g>
+
+  <!-- Location pin -->
+  <circle cx="300" cy="70" r="32" fill="#3B82F6" opacity=".35" filter="url(#glow)"/>
+  <circle cx="300" cy="66" r="28" fill="url(#g-pin)"/>
+  <path d="M300 82s-10-9-10-17a10 10 0 0 1 20 0c0 8-10 17-10 17z" fill="#fff"/>
+  <circle cx="300" cy="65" r="3.5" fill="#2563EB"/>
+
+  <!-- Boxes -->
+  <g>
+    <path d="M190 175 220 160 250 175 220 190z" fill="#F1F5F9"/>
+    <path d="M190 175 220 190v34l-30-15z" fill="#CBD5E1"/>
+    <path d="M250 175 220 190v34l30-15z" fill="#94A3B8"/>
+    <path d="M186 212 216 197 246 212 216 227z" fill="#E2E8F0"/>
+    <path d="M186 212 216 227v32l-30-15z" fill="#CBD5E1"/>
+    <path d="M246 212 216 227v32l30-15z" fill="#94A3B8"/>
+    <path d="M205 168 235 183" stroke="#94A3B8" stroke-width="3"/>
+  </g>
+
+  <!-- Monitor -->
+  <g>
+    <path d="M262 150 345 120v80l-83 30z" fill="#1E293B"/>
+    <path d="M267 154 340 127v68l-73 27z" fill="url(#g-screen)"/>
+    <path d="M300 215v20l-14 8 34 6 14-8-20-4v-30z" fill="url(#g-metal)"/>
+  </g>
+
+  <!-- Chair -->
+  <g transform="translate(330 250)">
+    <path d="M0 0 30-14 40 30 10 44z" fill="#334155"/>
+    <path d="M-6 44 34 26 54 36 14 54z" fill="#475569"/>
+    <path d="M24 54v24M4 84l20-6 22 6M24 78l-4 10" stroke="#64748B" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- Plant -->
+  <g transform="translate(30 200)">
+    <path d="M30 70 C10 50 6 20 22 0 C28 30 34 45 30 70z" fill="#22C55E"/>
+    <path d="M32 70 C40 40 56 22 70 18 C64 42 52 60 32 70z" fill="#16A34A"/>
+    <path d="M30 70 C18 58 0 52 -8 54 C4 66 18 72 30 70z" fill="#4ADE80"/>
+    <path d="M14 70h36l-4 34H18z" fill="#F8FAFC"/>
+    <path d="M14 70h36v6H14z" fill="#E2E8F0"/>
+  </g>
+
+  <!-- Laptop -->
+  <g>
+    <path d="M110 280 240 210 250 320 120 392z" fill="#1E293B"/>
+    <path d="M118 284 234 221 243 315 127 380z" fill="url(#g-screen)"/>
+    <!-- screen UI -->
+    <path d="M118 284 140 272 149 367 127 380z" fill="#1E3A8A"/>
+    <g fill="#93C5FD"><path d="M124 296l10-5v3l-10 5z"/><path d="M125 310l10-5v3l-10 5z"/><path d="M126 324l10-5v3l-10 5z"/></g>
+    <g fill="#94A3B8" opacity=".8">
+      <path d="M156 280l60-32v5l-60 32z"/>
+      <path d="M158 300l66-35v5l-66 35z"/>
+      <path d="M160 318l66-35v5l-66 35z"/>
+      <path d="M162 336l66-35v5l-66 35z"/>
+    </g>
+    <g fill="#3B82F6">
+      <circle cx="210" cy="285" r="3"/><circle cx="212" cy="303" r="3"/><circle cx="214" cy="321" r="3"/>
+    </g>
+    <!-- base -->
+    <path d="M120 392 250 320 330 365 200 440z" fill="url(#g-metal)"/>
+    <path d="M200 440 330 365v6L200 446z" fill="#64748B"/>
+    <path d="M120 392 200 440v6l-80-48z" fill="#94A3B8"/>
+    <g fill="#475569" opacity=".55">
+      <path d="M150 392 250 337 300 365 200 420z"/>
+    </g>
+    <path d="M220 410 252 392 268 401 236 419z" fill="#CBD5E1"/>
+  </g>
+</svg>

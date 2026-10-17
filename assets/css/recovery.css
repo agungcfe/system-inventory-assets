@@ -1,0 +1,430 @@
+/* =========================================================
+   AssetTrack - Forgot / Reset Password
+   Dipakai bersama login.css (variabel, .card, .input, .btn, .alert)
+   ========================================================= */
+
+.recovery {
+  position: relative;
+  overflow-x: hidden;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(11, 92, 240, 0.08), transparent 40%),
+    var(--bg-right);
+}
+
+.recovery .bg-circle { position: fixed; }
+
+.recovery__wrap {
+  position: relative;
+  z-index: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 36px 24px 24px;
+}
+
+.recovery__logo {
+  color: var(--text);
+  margin-bottom: 28px;
+}
+
+.recovery__card {
+  margin-top: 0;
+  max-width: 500px;
+}
+
+/* ---------- Stepper ---------- */
+.stepper {
+  list-style: none;
+  margin: 0 0 24px;
+  padding: 0;
+  width: 100%;
+  max-width: 500px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  counter-reset: step;
+}
+
+.stepper__item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* garis penghubung */
+.stepper__item:not(:first-child)::before {
+  content: "";
+  position: absolute;
+  top: 15px;
+  right: 50%;
+  width: 100%;
+  height: 2px;
+  background: var(--border);
+  z-index: 0;
+  transition: background 0.3s;
+}
+.stepper__item.is-active::before,
+.stepper__item.is-done::before { background: var(--primary); }
+
+.stepper__dot {
+  position: relative;
+  z-index: 1;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  background: var(--white);
+  border: 2px solid var(--border);
+  color: var(--text-muted);
+  transition: all 0.3s;
+}
+
+.stepper__item.is-active { color: var(--primary); font-weight: 600; }
+.stepper__item.is-active .stepper__dot {
+  border-color: var(--primary);
+  color: var(--primary);
+  box-shadow: 0 0 0 5px var(--primary-soft);
+}
+
+.stepper__item.is-done { color: var(--text); }
+.stepper__item.is-done .stepper__dot {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: transparent;
+}
+.stepper__item.is-done .stepper__dot::after {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 6px;
+  border-left: 2.5px solid var(--white);
+  border-bottom: 2.5px solid var(--white);
+  transform: translateY(-1px) rotate(-45deg);
+}
+
+/* ---------- Step (panel) ---------- */
+.step[hidden] { display: none; }
+.step.is-active { animation: stepIn 0.35s ease both; }
+
+@keyframes stepIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+
+.step__icon {
+  position: relative;
+  width: 64px;
+  height: 64px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 20px;
+  background: var(--primary-soft);
+  color: var(--primary);
+}
+.step__icon svg { width: 30px; height: 30px; }
+.step__icon--success { background: var(--success-soft); color: var(--success); border-radius: 50%; }
+.step__icon--success svg { stroke-width: 2.6; }
+.step__icon--danger { background: var(--danger-soft); color: var(--danger); }
+.step__icon--mail { animation: float 3s ease-in-out infinite; }
+
+.step__badge {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  border-radius: 11px;
+  background: var(--danger);
+  color: var(--white);
+  font-size: 0.75rem;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  border: 2px solid var(--white);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+.card__title:focus { outline: none; }
+
+.email-target {
+  color: var(--text);
+  overflow-wrap: anywhere;
+}
+
+.recovery .card__subtitle { max-width: none; }
+
+/* ---------- Link & tombol sekunder ---------- */
+.back-link {
+  margin-top: 24px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.95rem;
+  text-decoration: none;
+  width: 100%;
+  justify-content: center;
+}
+.back-link svg { width: 18px; height: 18px; }
+.back-link:hover { color: var(--primary); }
+
+a.btn { text-decoration: none; }
+
+.btn--outline {
+  background: var(--white);
+  color: var(--primary);
+  border: 1.5px solid var(--primary);
+  height: 52px;
+  font-size: 1rem;
+  margin-top: 20px;
+}
+.btn--outline:hover { background: var(--primary-soft); box-shadow: none; }
+.btn--outline:disabled {
+  color: var(--text-muted);
+  border-color: var(--border);
+  background: #F8FAFC;
+  cursor: not-allowed;
+}
+.btn--outline .btn__spinner { border-color: var(--primary-soft); border-top-color: var(--primary); }
+
+.btn:disabled:not(.is-loading):not(.btn--outline) {
+  background: #A7C2F7;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.link--btn {
+  border: 0;
+  background: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+.step__links {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.95rem;
+  color: var(--text-muted);
+}
+
+/* ---------- Tips ---------- */
+.tips {
+  margin: 20px 0 0;
+  padding: 14px 16px 14px 34px;
+  background: #F8FAFC;
+  border: 1px solid #E5EAF1;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: #475569;
+}
+.tips li + li { margin-top: 4px; }
+
+/* ---------- Simulasi email ---------- */
+.demo-mail {
+  margin-top: 20px;
+  border: 1.5px dashed #B6C8EA;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.demo-mail__head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: #EEF4FF;
+  font-size: 0.8rem;
+  color: #475569;
+}
+.demo-mail__tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #FEF3C7;
+  color: #92400E;
+  font-weight: 700;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+.demo-mail__body {
+  padding: 16px;
+  font-size: 0.88rem;
+  line-height: 1.6;
+  color: #334155;
+}
+.demo-mail__meta {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #E5EAF1;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  word-break: break-word;
+}
+.demo-mail__btn {
+  display: inline-block;
+  margin: 12px 0;
+  padding: 10px 20px;
+  border-radius: 8px;
+  background: var(--primary);
+  color: var(--white);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background 0.2s;
+}
+.demo-mail__btn:hover { background: var(--primary-hover); }
+.demo-mail__note { font-size: 0.78rem; color: var(--text-muted); }
+
+/* ---------- Strength meter ---------- */
+.strength {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.strength__bars {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 6px;
+}
+.strength__bars span {
+  height: 6px;
+  border-radius: 3px;
+  background: #E2E8F0;
+  transition: background 0.3s;
+}
+.strength__text {
+  min-width: 110px;
+  text-align: right;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.strength[data-level="1"] .strength__bars span:nth-child(-n+1) { background: #EF4444; }
+.strength[data-level="2"] .strength__bars span:nth-child(-n+2) { background: #F59E0B; }
+.strength[data-level="3"] .strength__bars span:nth-child(-n+3) { background: #3B82F6; }
+.strength[data-level="4"] .strength__bars span { background: var(--success); }
+.strength[data-level="1"] .strength__text { color: #EF4444; }
+.strength[data-level="2"] .strength__text { color: #D97706; }
+.strength[data-level="3"] .strength__text { color: #2563EB; }
+.strength[data-level="4"] .strength__text { color: var(--success); }
+
+/* ---------- Checklist syarat ---------- */
+.rules {
+  list-style: none;
+  margin: 12px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 16px;
+  font-size: 0.84rem;
+  color: var(--text-muted);
+}
+.rules li {
+  position: relative;
+  padding-left: 22px;
+  transition: color 0.2s;
+}
+.rules li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 3px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1.5px solid #CBD5E1;
+  transition: all 0.2s;
+}
+.rules li.is-valid { color: var(--success); }
+.rules li.is-valid::before {
+  background: var(--success);
+  border-color: var(--success);
+}
+.rules li.is-valid::after {
+  content: "";
+  position: absolute;
+  left: 4.5px;
+  top: 6px;
+  width: 5px;
+  height: 3px;
+  border-left: 1.8px solid var(--white);
+  border-bottom: 1.8px solid var(--white);
+  transform: rotate(-45deg);
+}
+
+/* ---------- Hint konfirmasi ---------- */
+.form__hint {
+  display: block;
+  margin-top: 6px;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+.form__hint:empty { display: none; }
+.form__hint.is-ok { color: var(--success); }
+.form__hint.is-error { color: var(--danger); }
+.input.is-valid input { border-color: var(--success); }
+
+/* ---------- Progress redirect ---------- */
+.progress {
+  margin-top: 22px;
+  height: 6px;
+  border-radius: 3px;
+  background: #E2E8F0;
+  overflow: hidden;
+}
+.progress span {
+  display: block;
+  height: 100%;
+  width: 0;
+  background: var(--primary);
+  border-radius: inherit;
+}
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+@media (max-width: 1024px) {
+  .recovery__wrap { padding-top: 48px; }
+}
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+@media (max-width: 640px) {
+  .recovery__wrap { padding: 24px 16px 16px; }
+  .recovery__logo { align-self: flex-start; margin-bottom: 22px; }
+  .stepper { margin-bottom: 18px; }
+  .stepper__label { font-size: 0.7rem; }
+  .stepper__dot { width: 28px; height: 28px; font-size: 0.8rem; }
+  .stepper__item:not(:first-child)::before { top: 13px; }
+
+  .step__icon { width: 54px; height: 54px; margin-bottom: 16px; }
+  .step__icon svg { width: 26px; height: 26px; }
+
+  .rules { grid-template-columns: 1fr; }
+  .strength__text { min-width: 92px; font-size: 0.78rem; }
+  .step__links { flex-wrap: wrap; }
+  .back-link { font-size: 0.9rem; }
+}
