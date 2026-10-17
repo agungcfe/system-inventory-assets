@@ -177,6 +177,26 @@
     }, 1200);
   });
 
+  /* ---------- Notifikasi dari halaman reset password ---------- */
+  var params = new URLSearchParams(window.location.search);
+  if (params.get('reset') === 'success') {
+    showAlert('success', 'Password berhasil diubah. Silakan masuk dengan password baru Anda.');
+    if (window.history && window.history.replaceState) {
+      window.history.replaceState(null, '', window.location.pathname);
+    }
+  }
+
+  /* Bawa email yang sudah diketik ke halaman lupa password */
+  var forgotLink = document.getElementById('forgotLink');
+  if (forgotLink) {
+    forgotLink.addEventListener('click', function () {
+      var value = usernameInput.value.trim();
+      if (EMAIL_RE.test(value)) {
+        forgotLink.href = 'forgot-password.html?email=' + encodeURIComponent(value);
+      }
+    });
+  }
+
   /* ---------- Tahun copyright ---------- */
   if (yearEl) yearEl.textContent = new Date().getFullYear();
 })();
